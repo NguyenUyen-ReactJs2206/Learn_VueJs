@@ -1,12 +1,3 @@
-<template>
-  <!-- Nội dung của template -->
-  <!-- Sử dụng các directives và các thành phần UI ở đây -->
-  <div>
-    <h2>{{ title }}</h2>
-    <p>{{ message }}</p>
-  </div>
-</template>
-
 <script>
 export default {
   name: 'Home',
@@ -30,5 +21,14 @@ export default {
   // Các phần khác của component
 }
 </script>
+
+<template>
+  <!-- Nội dung của template -->
+  <!-- Sử dụng các directives và các thành phần UI ở đây -->
+  <div>
+    <h2>{{ title }}</h2>
+    <p>{{ message }}</p>
+  </div>
+</template>
 
 <style scoped></style>

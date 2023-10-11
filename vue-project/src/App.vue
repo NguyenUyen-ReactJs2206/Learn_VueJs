@@ -7,17 +7,17 @@
       voluptas quae recusandae voluptate molestias incidunt. Eius quibusdam iste ab excepturi velit minus.
     </p>
     <Home />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Home from './components/Home.vue'
+import Home from './components/Home.vue';
 
 export default {
   name: 'App',
   components: {
     Home
   }
-  // Các phần khác của component App
-}
+};
 </script>
