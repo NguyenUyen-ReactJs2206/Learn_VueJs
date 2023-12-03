@@ -124,6 +124,11 @@ export default {
   props: {
     msg: String,
   },
+  methods: {
+    onChangeCSL() {
+      console.log("onChangeCSL....");
+    },
+  },
 };
 </script>
 
