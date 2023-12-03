@@ -7,13 +7,19 @@
       voluptas quae recusandae voluptate molestias incidunt. Eius quibusdam iste ab excepturi velit minus.
     </p>
     <Home />
+    <div class="router-link-class">
+      <router-link to="/" class="aaa">Go to Home</router-link>
+      <hr />
+      <router-link to="/about">Go to About</router-link>
+    </div>
+
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Home from './components/Home.vue';
-
+import './SASS/index.scss';
 export default {
   name: 'App',
   components: {
@@ -21,3 +27,9 @@ export default {
   }
 };
 </script>
+<style scoped>
+.aaa {
+  color: black;
+  text-decoration: none;
+}
+</style>

@@ -6,12 +6,12 @@ export default defineConfig({
   plugins: [vue()],
   server: {
     port: 4000
+  },
+  configureWebpack: {
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src')
+      }
+    }
   }
-  // configureWebpack: {
-  //   resolve: {
-  //     alias: {
-  //       '@': path.resolve(__dirname, 'src')
-  //     }
-  //   }
-  // }
 });
