@@ -2,13 +2,22 @@
 <template>
   <div class="modal">
     <div class="modal-box" :class="{ 'modal-bgpurple': theme === 'contact' }">
+      <button @click="onCloseModal" class="modal-close">x</button>
       <div
         class="modal-content"
         :class="{ 'modal-color': theme === 'contact' }"
       >
         {{ title }}
+        <div class="modal-header">
+          <slot name="header" />
+        </div>
+        <div class="modal-body">
+          <slot />
+        </div>
+        <div class="modal-footer">
+          <slot name="footer" />
+        </div>
       </div>
-      <button @click="onCloseModal" class="modal-close">x</button>
     </div>
   </div>
 </template>
@@ -67,7 +76,6 @@ export default {
     color: rgb(16, 16, 17);
   }
   &-close {
-    margin-left: 20px;
     cursor: pointer;
     padding: 5px 10px;
     font-size: 18px;
