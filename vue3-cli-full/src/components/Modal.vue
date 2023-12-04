@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="modal">
+  <div class="modal" @click.self="onCloseModal">
     <div class="modal-box" :class="{ 'modal-bgpurple': theme === 'contact' }">
       <button @click="onCloseModal" class="modal-close">x</button>
       <div

@@ -1,17 +1,20 @@
 <template>
   <div class="about">
     <h1>This is an about page</h1>
-    <Modal
-      v-if="isShowModal"
-      title="This is the Title"
-      v-on:close="onToggleModal"
-    >
-      <template v-slot:header> <h2>This is a Header</h2></template>
 
-      <template v-slot:footer>
-        <button @click="onToggleModal">Cancel</button></template
-      ></Modal
-    >
+    <teleport to="body">
+      <Modal
+        v-if="isShowModal"
+        title="This is the Title"
+        v-on:close="onToggleModal"
+      >
+        <template v-slot:header> <h2>This is a Header</h2></template>
+
+        <template v-slot:footer>
+          <button @click="onToggleModal">Cancel</button></template
+        ></Modal
+      >
+    </teleport>
     <button @click="onToggleModal">Toggle Modal</button>
   </div>
 </template>
