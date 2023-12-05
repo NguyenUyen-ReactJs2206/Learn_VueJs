@@ -13,7 +13,7 @@
         <div
           class="card__content"
           :style="{
-            backgroundImage: `url(${require('../assets/' + imgBackFaceUrl)})`,
+            backgroundImage: `url('${require('../assets/' + imgBackFaceUrl)}')`,
           }"
         ></div>
       </div>
@@ -24,6 +24,9 @@
 <script>
 export default {
   props: {
+    card: {
+      type: [String, Number, Array, Object],
+    },
     imgBackFaceUrl: {
       type: String,
       required: true,
@@ -37,6 +40,11 @@ export default {
   methods: {
     onToggleFlipCard() {
       this.isFlipped = !this.isFlipped;
+      if (this.isFlipped) this.$emit("onFlip", this.card);
+    },
+
+    onFlipBackCard() {
+      this.isFlipped = false;
     },
   },
 };
@@ -74,9 +82,6 @@ export default {
     border-radius: 1rem;
     padding: 1rem;
     box-shadow: 0 3px 10px 3px rgba(0, 0, 0, 0.2);
-
-    &--front {
-    }
 
     &--back {
       background-color: var(--light);
