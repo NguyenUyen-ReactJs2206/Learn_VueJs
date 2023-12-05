@@ -9,6 +9,7 @@
 <script>
 import MainScreen from "./components/MainScreen.vue";
 import InteractScreen from "./components/InteractScreen.vue";
+import { shuffled } from "./utils/array.js";
 
 export default {
   name: "App",
@@ -18,6 +19,10 @@ export default {
   },
   data() {
     return {
+      settings: {
+        totalOfBlocks: 0,
+        cardsContext: [],
+      },
       statusMatch: "default",
     };
   },
@@ -25,6 +30,22 @@ export default {
     //Truoc khi bat dau
     onHandleBeforeStart(config) {
       console.log("running handle before start", config);
+      //data ready
+      this.settings.totalOfBlocks = config.totalOfBlocks;
+      const firstCards = Array.from(
+        { length: this.settings.totalOfBlocks / 2 },
+        (_, i) => i + 1
+      );
+      //clone shadow
+      const secondCards = [...firstCards];
+
+      const cards = [...firstCards, ...secondCards];
+      console.log(cards);
+      this.settings.cardsContext = shuffled(
+        shuffled(shuffled(shuffled(cards)))
+      );
+      console.log(this.settings.cardsContext);
+
       this.statusMatch = "match";
     },
   },
