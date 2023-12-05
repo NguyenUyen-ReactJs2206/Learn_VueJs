@@ -3,7 +3,10 @@
     v-if="statusMatch === 'default'"
     @onStart="onHandleBeforeStart($event)"
   />
-  <InteractScreen v-if="statusMatch === 'match'" />
+  <InteractScreen
+    v-if="statusMatch === 'match'"
+    :cardsContext="settings.cardsContext"
+  />
 </template>
 
 <script>
@@ -22,6 +25,7 @@ export default {
       settings: {
         totalOfBlocks: 0,
         cardsContext: [],
+        startAt: null,
       },
       statusMatch: "default",
     };
@@ -38,13 +42,11 @@ export default {
       );
       //clone shadow
       const secondCards = [...firstCards];
-
       const cards = [...firstCards, ...secondCards];
-      console.log(cards);
       this.settings.cardsContext = shuffled(
         shuffled(shuffled(shuffled(cards)))
       );
-      console.log(this.settings.cardsContext);
+      this.settings.startAt = new Date().getTime();
 
       this.statusMatch = "match";
     },
