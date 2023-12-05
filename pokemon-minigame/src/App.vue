@@ -2,6 +2,7 @@
   <MainScreen
     v-if="statusMatch === 'default'"
     @onStart="onHandleBeforeStart($event)"
+    @onFinish="onGetResult"
   />
   <InteractScreen
     v-if="statusMatch === 'match'"
@@ -25,9 +26,10 @@ export default {
       settings: {
         totalOfBlocks: 0,
         cardsContext: [],
-        startAt: null,
+        startedAt: null,
       },
       statusMatch: "default",
+      timer: 0,
     };
   },
   methods: {
@@ -49,6 +51,12 @@ export default {
       this.settings.startAt = new Date().getTime();
 
       this.statusMatch = "match";
+    },
+    onGetResult() {
+      //get timer
+      this.timer = new Date().getTime() - this.settings.startedAt;
+      //switch to result component
+      this.statusMatch = "result";
     },
   },
 };

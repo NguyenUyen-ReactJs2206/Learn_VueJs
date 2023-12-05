@@ -47,6 +47,20 @@ export default {
         this.$refs[`card-${this.rules[1].index}`][0].onEnabledDisableMode();
         //reset rules to []
         this.rules = [];
+        //Lấy tất cả các element có class là disabled
+        const disableElement = document.querySelectorAll(
+          ".screen .card.disabled"
+        );
+        console.log(disableElement, "dđ");
+
+        if (
+          disableElement &&
+          disableElement.length === this.cardsContext.length - 2
+        ) {
+          setTimeout(() => {
+            this.$emit("onFinish");
+          }, 920);
+        }
       } else if (
         this.rules.length === 2 &&
         this.rules[0].value !== this.rules[1].value
