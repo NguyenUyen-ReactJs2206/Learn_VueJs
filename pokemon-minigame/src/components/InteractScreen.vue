@@ -42,15 +42,18 @@ export default {
         this.rules[0].value === this.rules[1].value
       ) {
         console.log("Right...");
+        //add class disabled to component card
+        this.$refs[`card-${this.rules[0].index}`][0].onEnabledDisableMode();
+        this.$refs[`card-${this.rules[1].index}`][0].onEnabledDisableMode();
+        //reset rules to []
+        this.rules = [];
       } else if (
         this.rules.length === 2 &&
         this.rules[0].value !== this.rules[1].value
       ) {
         setTimeout(() => {
-          const index0 = this.rules[0].index;
-          const index1 = this.rules[1].index;
-          this.$refs[`card-${index0}`].onFlipBackCard();
-          this.$refs[`card-${index1}`].onFlipBackCard();
+          this.$refs[`card-${this.rules[0].index}`][0].onFlipBackCard();
+          this.$refs[`card-${this.rules[1].index}`][0].onFlipBackCard();
 
           this.rules = [];
         }, 800);
