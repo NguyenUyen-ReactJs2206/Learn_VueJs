@@ -1,13 +1,38 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="card" :class="{ disabled: isDisabled }">
+  <div
+    class="card"
+    :class="{ disabled: isDisabled }"
+    :style="{
+      height: `${(920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16}px`,
+      width: `${
+        (((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) / 4
+      }px`,
+      perspective: `${
+        ((((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) / 4) * 2
+      }px`,
+    }"
+  >
     <div
       class="card__inner"
       :class="{ 'card-is-flipped': isFlipped }"
       @click="onToggleFlipCard"
     >
       <div class="card__face card__face--front">
-        <div class="card__content"></div>
+        <div
+          class="card__content"
+          :style="{
+            backgroundSize: `${
+              (((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) /
+              4 /
+              3
+            }px ${
+              (((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) /
+              4 /
+              3
+            }px`,
+          }"
+        ></div>
       </div>
       <div class="card__face card__face--back">
         <div
@@ -30,6 +55,12 @@ export default {
     imgBackFaceUrl: {
       type: String,
       required: true,
+    },
+    cardsContext: {
+      type: Array,
+      default: function () {
+        return [];
+      },
     },
   },
   data() {
@@ -62,6 +93,8 @@ export default {
   margin-bottom: 1rem;
   width: 90px;
   height: 120px;
+  //Hieu ung day ngang
+  /* perspective: 100px; */
 
   &__inner {
     width: 100%;
@@ -96,12 +129,14 @@ export default {
       transform: rotateY(-180deg);
     }
   }
+
   &__face--front &__content {
     background: url("../assets//images/icon_back.png") no-repeat center center;
     background-size: 40px 40px;
     height: 100%;
     width: 100%;
   }
+
   &__face--back &__content {
     background-size: contain;
     background-position: center center;

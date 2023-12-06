@@ -18,8 +18,8 @@
 <script>
 import MainScreen from "./components/MainScreen.vue";
 import InteractScreen from "./components/InteractScreen.vue";
-import { shuffled } from "./utils/array.js";
 import ResultScreen from "./components/ResultScreen.vue";
+import { shuffled } from "./utils/array.js";
 
 export default {
   name: "App",
