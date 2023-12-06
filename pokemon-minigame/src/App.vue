@@ -13,20 +13,22 @@
     :timer="timer"
     @onStartAgain="statusMatch = 'default'"
   />
+  <CopyRight />
 </template>
 
 <script>
 import MainScreen from "./components/MainScreen.vue";
 import InteractScreen from "./components/InteractScreen.vue";
-import ResultScreen from "./components/ResultScreen.vue";
 import { shuffled } from "./utils/array.js";
-
+import ResultScreen from "./components/ResultScreen.vue";
+import CopyRight from "./components/CopyRight.vue";
 export default {
   name: "App",
   components: {
     MainScreen,
     InteractScreen,
     ResultScreen,
+    CopyRight,
   },
   data() {
     return {

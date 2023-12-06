@@ -4,7 +4,7 @@
       class="screen__inner"
       :style="{
         width: `${
-          ((((920 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) / 4 +
+          ((((820 - 16 * 4) / Math.sqrt(cardsContext.length) - 16) * 3) / 4 +
             16) *
           Math.sqrt(cardsContext.length)
         }px`,
@@ -92,7 +92,7 @@ export default {
 <style lang="scss" scoped>
 .screen {
   width: 100%;
-  /* height: 100vh; */
+  height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
