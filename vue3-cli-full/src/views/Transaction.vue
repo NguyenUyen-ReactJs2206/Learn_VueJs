@@ -2,12 +2,15 @@
 <template>
   <div class="transaction">
     <h1>Transaction Page</h1>
-    <div v-for="transaction in transactions" :key="transaction.id">
-      <router-link :to="`/transactions/${transaction.id}`">{{
-        transaction.name
-      }}</router-link>
-      <p>{{ transaction.price }}</p>
+    <div v-if="transactions.length">
+      <div v-for="transaction in transactions" :key="transaction.id">
+        <router-link :to="`/transactions/${transaction.id}`">{{
+          transaction.name
+        }}</router-link>
+        <p>{{ transaction.price }}</p>
+      </div>
     </div>
+    <div v-else>Loading Transactions.....</div>
   </div>
 </template>
 
