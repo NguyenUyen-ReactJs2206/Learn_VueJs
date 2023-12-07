@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import BindingForm from "../views/BindingForm.vue";
-
+import Transaction from "../views/Transaction.vue";
+import TransactionDetail from "../views/TransactionDetail.vue";
 const routes = [
   {
     path: "/",
@@ -21,6 +22,16 @@ const routes = [
     path: "/form",
     name: "form",
     component: BindingForm,
+  },
+  {
+    path: "/transaction",
+    name: "transaction",
+    component: Transaction,
+  },
+  {
+    path: "/transactions/:id",
+    name: "transactionDetail",
+    component: TransactionDetail,
   },
 ];
 
