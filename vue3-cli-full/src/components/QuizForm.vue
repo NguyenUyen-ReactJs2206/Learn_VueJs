@@ -17,19 +17,36 @@
                   type="text"
                   placeholder="John Smith"
                   v-model="quiz.fullName"
-                  :class="{ error: error.status }"
+                  :class="{
+                    error: nameError.status,
+                    success: nameSuccess.status,
+                  }"
                 />
-                <p class="error-text">{{ error.text }}</p>
-                <p class="success-text">{{ success.text }}</p>
+                <p class="error-text" v-if="nameError.status">
+                  {{ nameError.text }}
+                </p>
+                <p class="success-text" v-else-if="nameSuccess.status">
+                  {{ nameSuccess.text }}
+                </p>
               </div>
               <div class="form-item col">
                 <label for="email">What is your email address?</label>
                 <input
                   id="email"
-                  type="email"
+                  type="text"
                   placeholder="skyalbert.960@gmail.com"
                   v-model="quiz.email"
+                  :class="{
+                    error: emailError.status,
+                    success: emailSuccess.status,
+                  }"
                 />
+                <p class="error-text" v-if="emailError.status">
+                  {{ emailError.text }}
+                </p>
+                <p class="success-text" v-if="emailSuccess.status">
+                  {{ emailSuccess.text }}
+                </p>
               </div>
             </div>
           </div>
@@ -146,11 +163,19 @@ export default {
         desc: "",
         jobs: [],
       },
-      error: {
+      nameError: {
         text: "",
         status: false,
       },
-      success: {
+      nameSuccess: {
+        text: "",
+        status: false,
+      },
+      emailError: {
+        text: "",
+        status: false,
+      },
+      emailSuccess: {
         text: "",
         status: false,
       },
@@ -199,25 +224,103 @@ export default {
       console.log(this.quiz);
 
       if (this.quiz.fullName.length < 6 || this.quiz.fullName.length > 18) {
-        this.error = {
+        this.nameError = {
           text: "Look failed! Full Name should be 6-18 characters",
           status: true,
+        };
+        this.nameSuccess = {
+          text: "",
+          status: false,
         };
       } else if (
         this.quiz.fullName.length > 5 &&
         this.quiz.fullName.length < 19
       ) {
-        this.success = {
+        this.nameSuccess = {
           text: "Look great!",
           status: true,
         };
+        this.nameError = {
+          text: "",
+          status: false,
+        };
       } else {
-        this.error = {
+        this.nameError = {
+          text: "",
+          status: false,
+        };
+        this.nameSuccess = {
+          text: "",
+          status: false,
+        };
+      }
+
+      const emailRegex = /\S+@\S+\.\S+/;
+
+      if (this.quiz.email === "") {
+        this.emailError = {
+          text: "Please enter email",
+          status: true,
+        };
+        this.emailSuccess = {
+          text: "",
+          status: false,
+        };
+      } else if (!emailRegex.test(this.quiz.email)) {
+        this.emailError = {
+          text: "Invalid email format",
+          status: true,
+        };
+        this.emailSuccess = {
+          text: "",
+          status: false,
+        };
+      } else if (emailRegex.test(this.quiz.email)) {
+        this.emailSuccess = {
+          text: "Look great!",
+          status: true,
+        };
+        this.emailError = {
+          text: "",
+          status: false,
+        };
+      } else {
+        this.emailError = {
+          text: "",
+          status: false,
+        };
+        this.emailSuccess = {
           text: "",
           status: false,
         };
       }
     },
+    // validateEmail() {
+    //   // Kiểm tra email bằng regex hoặc các phương thức kiểm tra khác
+    //   const emailRegex = /\S+@\S+\.\S+/;
+
+    //   if (this.quiz.email === "") {
+    //     this.emailError = {
+    //       text: "Please enter email",
+    //       status: true,
+    //     };
+    //   } else if (!emailRegex.test(this.quiz.email)) {
+    //     this.emailError = {
+    //       text: "Invalid email format",
+    //       status: true,
+    //     };
+    //   } else if (emailRegex.test(this.quiz.email)) {
+    //     this.emailSuccess = {
+    //       text: "Look great!",
+    //       status: true,
+    //     };
+    //   } else {
+    //     this.emailError = {
+    //       text: "",
+    //       status: false,
+    //     };
+    //   }
+    // },
   },
 };
 </script>
