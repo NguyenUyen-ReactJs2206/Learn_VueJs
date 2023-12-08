@@ -6,11 +6,17 @@
     <p>{{ secondName }}</p>
     <p>{{ car }}</p>
     <button @click="onChangeSomething">Click me</button>
+    <div class="test-search">
+      <input type="text" v-model="searchText" />
+      <ul>
+        <li v-for="(text, index) in listTestFilled" :key="index">{{ text }}</li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
-import { reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
 
 export default {
   setup() {
@@ -24,9 +30,33 @@ export default {
       name: "Mec",
     });
 
-    function onChangeSomething() {
-      console.log(car);
+    //Test Search (computed)
+    const searchText = ref("");
+    const listText = reactive([
+      "text-1",
+      "tExt-2",
+      "Text-3",
+      "tEXt-4",
+      "TEXT-5",
+      "text-6",
+    ]);
 
+    //computed=>ham tra ra du lieu
+    // const listTestFilled = computed(() =>
+    //   listText
+    //     .map((text) => {
+    //       text = text.toLowerCase();
+    //       return text;
+    //     })
+    //     .filter((text) => text.includes(searchText.value))
+    // );
+    const listTestFilled = computed(() =>
+      listText.filter((text) =>
+        text.toLowerCase().includes(searchText.value.toLowerCase())
+      )
+    );
+
+    function onChangeSomething() {
       firstName.value = "Ren";
       //thay doi
       secondName.value = {
@@ -43,7 +73,14 @@ export default {
       car.name = "aaaa";
     }
 
-    return { firstName, secondName, car, onChangeSomething };
+    return {
+      firstName,
+      secondName,
+      car,
+      onChangeSomething,
+      searchText,
+      listTestFilled,
+    };
   },
 };
 </script>
@@ -51,5 +88,8 @@ export default {
 <style scop>
 .screen {
   margin-top: 4rem;
+}
+.test-search {
+  margin-top: 2rem;
 }
 </style>
