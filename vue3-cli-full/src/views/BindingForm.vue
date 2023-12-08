@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="form">
     <h1>BindingForm</h1>
     <QuizForm />
   </div>
@@ -14,3 +14,9 @@ export default {
   components: { QuizForm },
 };
 </script>
+
+<style scoped>
+.from {
+  margin-top: 4rem;
+}
+</style>

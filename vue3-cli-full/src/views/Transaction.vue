@@ -33,6 +33,6 @@ export default {
 
 <style scoped>
 .transaction {
-  margin-top: 20px;
+  margin-top: 4rem;
 }
 </style>

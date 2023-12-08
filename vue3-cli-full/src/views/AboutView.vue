@@ -42,5 +42,6 @@ export default {
 <style>
 .about {
   position: relative;
+  margin-top: 4rem;
 }
 </style>

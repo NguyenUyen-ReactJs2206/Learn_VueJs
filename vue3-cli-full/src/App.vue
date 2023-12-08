@@ -3,7 +3,8 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/form">Form</router-link> |
-    <router-link to="/transaction">Transaction</router-link>
+    <router-link to="/transaction">Transaction</router-link> |
+    <router-link to="/composition">Composition</router-link>
   </nav>
   <router-view />
 </template>
@@ -16,7 +17,7 @@ nav {
 
   a {
     font-weight: bold;
-    color: #2c3e50;
+    color: white;
 
     &.router-link-exact-active {
       color: #42b983;

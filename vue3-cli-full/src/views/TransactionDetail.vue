@@ -1,10 +1,12 @@
 <template>
-  <h1>Transaction detail : {{ $route.params.id }}</h1>
-  <div v-if="transaction">
-    <h1>Name: {{ transaction.name }}</h1>
-    <p>Price: {{ transaction.price }}</p>
+  <div class="transaction-detail">
+    <h1>Transaction detail : {{ $route.params.id }}</h1>
+    <div v-if="transaction">
+      <h1>Name: {{ transaction.name }}</h1>
+      <p>Price: {{ transaction.price }}</p>
+    </div>
+    <div v-else>Loading Transaction {{ $route.params.id }}</div>
   </div>
-  <div v-else>Loading Transaction {{ $route.params.id }}</div>
 </template>
 
 <script>
@@ -22,3 +24,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.transaction-detail {
+  margin-top: 4rem;
+}
+</style>
