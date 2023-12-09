@@ -12,11 +12,15 @@
         <li v-for="(text, index) in listTestFilled" :key="index">{{ text }}</li>
       </ul>
     </div>
+    <div>
+      <p class="fetch-data">Data: {{ fetchDataResult }}</p>
+      <button @click="changeData">Change Data</button>
+    </div>
   </div>
 </template>
 
 <script>
-import { computed, reactive, ref } from "vue";
+import { computed, reactive, ref, watch, watchEffect } from "vue";
 
 export default {
   setup() {
@@ -56,6 +60,18 @@ export default {
       )
     );
 
+    //quan sát các thay đổi trên các biến dữ liệu và thực hiện các hành động phụ thuộc vào sự thay đổi đó
+    watch(searchText, (newValue, oldValue) => {
+      console.log(newValue, oldValue);
+    });
+
+    //giong computed - tao ra su thay doi khi ben trong thay doi
+    //khac computed: tra ra gia tri, watchEffect thi khong tra ra gia tri
+    watchEffect(() => {
+      if (searchText.value) {
+        console.log("running");
+      }
+    });
     function onChangeSomething() {
       firstName.value = "Ren";
       //thay doi
@@ -90,6 +106,9 @@ export default {
   margin-top: 4rem;
 }
 .test-search {
+  margin-top: 2rem;
+}
+.fetch-data {
   margin-top: 2rem;
 }
 </style>
