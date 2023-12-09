@@ -10,23 +10,46 @@
         <p>{{ transaction.price }}</p>
       </div>
     </div>
+    <div v-else-if="error">{{ error.message }}</div>
     <div v-else>Loading Transactions.....</div>
   </div>
 </template>
 
 <script>
+import { ref } from "vue";
+
 export default {
-  data() {
-    return {
-      transactions: [],
+  // data() {
+  //   return {
+  //     transactions: [],
+  //   };
+  // },
+  // async created() {
+  //   fetch("http://localhost:3000/transactions")
+  //     .then((response) => {
+  //       return response.json();
+  //     })
+  //     .then((data) => (this.transactions = data));
+  // },
+  setup() {
+    const transactions = ref([]);
+    const error = ref(null);
+    console.log(transactions, error);
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/transactions");
+
+        if (!response.ok) throw new Error("Something went wrong");
+        transactions.value = await response.json();
+      } catch (err) {
+        error.value = err;
+        console.log(error.value);
+      }
     };
-  },
-  async created() {
-    fetch("http://localhost:3000/transactions")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => (this.transactions = data));
+
+    fetchData();
+
+    return { transactions, error };
   },
 };
 </script>

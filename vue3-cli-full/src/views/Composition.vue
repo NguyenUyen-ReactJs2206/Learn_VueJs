@@ -23,7 +23,17 @@
 import { computed, reactive, ref, watch, watchEffect } from "vue";
 
 export default {
-  setup() {
+  props: {
+    theme: {
+      type: String,
+      required: false,
+      default: "light",
+    },
+  },
+  setup(props, context) {
+    console.log(props);
+    console.log(context);
+
     const firstName = ref("Uyen");
     const secondName = ref({
       name: "Ha",
