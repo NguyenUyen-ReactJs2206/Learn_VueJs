@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import useTransactions from "../uses/fetchTransaction";
 
 export default {
   // data() {
@@ -31,25 +31,29 @@ export default {
   //     })
   //     .then((data) => (this.transactions = data));
   // },
+  //------------------VUE3-----------------
+  // setup() {
+  //   const transactions = ref([]);
+  //   const error = ref(null);
+  //   console.log(transactions, error);
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch("http://localhost:3000/transactions");
+  //       if (!response.ok) throw new Error("Something went wrong");
+  //       transactions.value = await response.json();
+  //     } catch (err) {
+  //       error.value = err;
+  //       console.log(error.value);
+  //     }
+  //   };
+  //   fetchData();
+  //   return { transactions, error };
+  // },
+
   setup() {
-    const transactions = ref([]);
-    const error = ref(null);
-    console.log(transactions, error);
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/transactions");
-
-        if (!response.ok) throw new Error("Something went wrong");
-        transactions.value = await response.json();
-      } catch (err) {
-        error.value = err;
-        console.log(error.value);
-      }
-    };
-
+    const { fetchData, error, transactions } = useTransactions();
     fetchData();
-
-    return { transactions, error };
+    return { error, transactions };
   },
 };
 </script>
