@@ -4,6 +4,7 @@ import BindingForm from "../views/BindingForm.vue";
 import Transaction from "../views/Transaction.vue";
 import TransactionDetail from "../views/TransactionDetail.vue";
 import CompositionVue from "../views/Composition.vue";
+import VueX from "../views/VueX.vue";
 const routes = [
   {
     path: "/",
@@ -38,6 +39,11 @@ const routes = [
     path: "/composition",
     name: "composition",
     component: CompositionVue,
+  },
+  {
+    path: "/vuex",
+    name: "vuex",
+    component: VueX,
   },
 ];
 
