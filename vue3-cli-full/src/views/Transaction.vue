@@ -53,6 +53,7 @@ export default {
   setup() {
     const { fetchData, error, transactions } = useTransactions();
     fetchData();
+
     return { error, transactions };
   },
 };

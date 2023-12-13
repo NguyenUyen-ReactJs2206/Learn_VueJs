@@ -5,6 +5,7 @@ export default createStore({
     return {
       count: 100,
       transaction: null,
+      error: null,
     };
   },
   mutations: {
@@ -13,6 +14,9 @@ export default createStore({
     },
     setTransaction(state, transactionPayload) {
       state.transaction = transactionPayload;
+    },
+    setError(state, errorPayload) {
+      state.error = errorPayload;
     },
   },
   actions: {
